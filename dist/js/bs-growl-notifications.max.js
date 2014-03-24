@@ -25,9 +25,8 @@ Originally written by Aaron Haurwitz (http://aaron.haurwitz.com/), licensed unde
     */
 
     itemViewClass: Ember.View.extend({
-      classNames: ['growl-notification'],
       template: Ember.Handlebars.compile('<span class="icon"><i class="fa {{unbound view.iconType}}"></i></span>\n<a class="close-notification" {{action "close" target="view"}}>\n    <span style="font-size: 15px;"><i class="fa fa-times"></i></span>\n</a>\n<strong>\n    {{view.content.title}}\n</strong>\n<p>\n    {{view.content.sub}}\n</p>'),
-      classNameBindings: [":growl-notification", "content.closed", "isOpaque"],
+      classNameBindings: [":growl-notification", "content.closed", "isOpaque", "content.type"],
       attributeBindings: ['style'],
       /*
       @property {Number} Will be set by `didInsertElement`, used for clearing the auto-hide timeout.
