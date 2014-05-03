@@ -1,6 +1,7 @@
 Showcase.Router.map(() ->
     @resource 'show_components', ->
         @route 'alert'
+        @route 'breadcrumbs'
         @route 'modal'
         @route 'label'
         @route 'badge'
@@ -19,6 +20,7 @@ Showcase.Router.map(() ->
         @route 'tabs-with-routes'
         @route 'notifications'
         @route 'growl-notif'
+        @route 'popover'
         @resource('user', ->
             @route ('general')
             @route ('privacy')

@@ -8,10 +8,11 @@ Bootstrap.BsBtnGroup = Bootstrap.ItemsView.extend(Bootstrap.SizeSupport, Bootstr
     classTypePrefix: ['btn-group']
     classNames: ['btn-group']
     classNameBindings: ['vertical:btn-group-vertical']
-    #TODO: This is a hack until it will be possible to extend from component as it looses the template association
-    #see https://github.com/emberjs/ember.js/issues/3376
     itemViewClass: Bootstrap.BsButtonComponent.extend(Bootstrap.ItemValue, Bootstrap.ItemSelection,
-        layoutName: 'components/bs-button'
+        init: ->
+            @_super()
+            @set('icon_active', @get('parentView.icon_active'))
+            @set('icon_inactive', @get('parentView.icon_inactive'))
     )
 )
 

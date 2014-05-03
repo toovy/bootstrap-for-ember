@@ -2,6 +2,7 @@ Showcase.ApplicationRoute = Ember.Route.extend(
     model: () ->
         [
             Ember.Object.create({title: "Alert", route: "show_components.alert"})
+            Ember.Object.create({title: "Breadcrumbs", route: "show_components.breadcrumbs", new: true})
             Ember.Object.create({title: "Modal", route: "show_components.modal"})
             Ember.Object.create({title: "Label", route: "show_components.label"})
             Ember.Object.create({title: "Badge", route: "show_components.badge"})
@@ -12,6 +13,7 @@ Showcase.ApplicationRoute = Ember.Route.extend(
             Ember.Object.create({title: "Button", route: "show_components.button"})
             Ember.Object.create({title: "Button Group", route: "show_components.buttonGroup"})
             Ember.Object.create({title: "Progressbar", route: "show_components.progressbar"})
+            Ember.Object.create({title: "Tooltips & Popover", new: true, route: "show_components.popover"})
             Ember.Object.create({title: "Nav - Pills", route: "show_components.pills"})
             Ember.Object.create({title: "Nav - Tabs", route: "show_components.tabs"})
             Ember.Object.create({title: "Nav - Tabs Panes", route: "show_components.tabs-panes"})
