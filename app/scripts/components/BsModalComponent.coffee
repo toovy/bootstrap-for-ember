@@ -18,6 +18,7 @@ Bootstrap.BsModalComponent = Ember.Component.extend(
     title: null
     isVisible: false
     manual: false
+    modalSize: ''
 
     didInsertElement: ->
         @._super()
@@ -132,7 +133,7 @@ Bootstrap.ModalManager = Ember.Object.create(
         instance = modalView.create options
         instance.appendTo rootElement
 
-    open: (name, title, view, footerButtons, controller) ->
+    open: (name, title, view, footerButtons, controller, modalProperties = {}) ->
         cl = controller.container.lookup 'component-lookup:main'
         modalComponent = cl.lookupFactory('bs-modal', controller.get('container')).create()
 
@@ -143,6 +144,8 @@ Bootstrap.ModalManager = Ember.Object.create(
             footerButtons: footerButtons
             targetObject: controller
         )
+
+        modalComponent.setProperties modalProperties
 
         if Ember.typeOf(view) is 'string'
             template = controller.container.lookup("template:#{view}")
