@@ -19,6 +19,21 @@ Originally written by Aaron Haurwitz (http://aaron.haurwitz.com/), licensed unde
     contentBinding: 'Bootstrap.GNM.notifications',
     attributeBindings: ['style'],
     showTime: 10000,
+    iconTypeInfo: 'fa-info',
+    iconTypeSuccess: 'fa-check',
+    iconTypeWarning: 'fa-exclamation',
+    iconTypeDanger: 'fa-times',
+    iconTypeHash: (function() {
+      return {
+        info: this.get('iconTypeInfo'),
+        success: this.get('iconTypeSuccess'),
+        warning: this.get('iconTypeWarning'),
+        danger: this.get('iconTypeDanger')
+      };
+    }).property('iconTypeInfo', 'iconTypeSuccess', 'iconTypeWarning', 'iconTypeDanger'),
+    iconType: function(type) {
+      return this.get('iconTypeHash')[type];
+    },
     /*
     @property {View} Notification view class
     Determines what view class to render for each item in the content array.
@@ -95,15 +110,9 @@ Originally written by Aaron Haurwitz (http://aaron.haurwitz.com/), licensed unde
       */
 
       iconType: (function() {
-        var hash, type;
+        var type;
         type = this.get('content.type');
-        hash = {
-          'info': 'fa-bullhorn',
-          'success': 'fa-check',
-          'warning': 'fa-exclamation',
-          'danger': 'fa-times'
-        };
-        return hash[type] || '';
+        return this.get('parentView').iconType(type) || '';
       }).property('content.type'),
       actions: {
         close: function() {

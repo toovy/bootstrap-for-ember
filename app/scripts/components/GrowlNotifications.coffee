@@ -15,6 +15,22 @@ Bootstrap.GrowlNotifications = Ember.CollectionView.extend (
     attributeBindings: ['style']
     showTime: 10000
 
+    iconTypeInfo: 'fa-info'
+    iconTypeSuccess: 'fa-check'
+    iconTypeWarning: 'fa-exclamation'
+    iconTypeDanger: 'fa-times'
+
+    iconTypeHash: (->
+        return {
+            info: @get('iconTypeInfo')
+            success: @get('iconTypeSuccess')
+            warning: @get('iconTypeWarning')
+            danger: @get('iconTypeDanger') }
+    ).property('iconTypeInfo', 'iconTypeSuccess', 'iconTypeWarning', 'iconTypeDanger')
+
+    iconType: (type) ->
+        @get('iconTypeHash')[type]
+
     ###
     @property {View} Notification view class
     Determines what view class to render for each item in the content array.
@@ -106,12 +122,7 @@ Bootstrap.GrowlNotifications = Ember.CollectionView.extend (
         ###
         iconType: (->
             type = this.get('content.type')
-            hash =
-                'info': 'fa-bullhorn'
-                'success': 'fa-check'
-                'warning': 'fa-exclamation'
-                'danger': 'fa-times'
-            hash[type] || ''
+            @get('parentView').iconType(type) || ''
         ).property('content.type')
 
         actions:
