@@ -20,6 +20,9 @@ Bootstrap.BsModalComponent = Ember.Component.extend(
     manual: false
     modalSize: ''
 
+    fullHeight: false
+    fullHeightMargin: 60
+
     didInsertElement: ->
         @._super()
         @setupBinders()
@@ -31,6 +34,9 @@ Bootstrap.BsModalComponent = Ember.Component.extend(
 
         if @manual
             @show()
+        Ember.run.next @, ->
+            if @get('fullHeight')
+                @$().find('.modal-body').css('height', $(window).height() - @get('fullHeightMargin'))
 
     becameVisible: ->
         @appendBackdrop() if @get("backdrop")

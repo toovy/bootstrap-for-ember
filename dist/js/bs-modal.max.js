@@ -19,6 +19,8 @@ Modal component.
     isVisible: false,
     manual: false,
     modalSize: '',
+    fullHeight: false,
+    fullHeightMargin: 60,
     didInsertElement: function() {
       var name;
       this._super();
@@ -30,8 +32,13 @@ Modal component.
       }
       Bootstrap.ModalManager.add(name, this);
       if (this.manual) {
-        return this.show();
+        this.show();
       }
+      return Ember.run.next(this, function() {
+        if (this.get('fullHeight')) {
+          return this.$().find('.modal-body').css('height', $(window).height() - this.get('fullHeightMargin'));
+        }
+      });
     },
     becameVisible: function() {
       if (this.get("backdrop")) {
